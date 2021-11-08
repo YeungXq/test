@@ -1,0 +1,77 @@
+urls = ['https://archive.apache.org/dist/maven/']
+dir_name = urls[0].split('/').last
+user_dir = File.expand_path('~')
+@path = "#{user_dir}/#{dir_name}"
+Dir.mkdir(@path) unless File.directory?(@path)
+FILE_TYPE = %w[tar.gz tar.bz2 zip exe war jar pom bin sit]
+search_link(urls)
+
+def search_link(urls)
+	results = []
+	files = []
+	parent = ''
+	urls.each do |url|
+		doc = Nokogiri::HTML(URI.parse(url).open)
+		parent = @path + url[37..-1]
+		doc.css("pre a")[5..-1].each do |d|
+			value = d.attributes["href"].value
+			unless value.end_with?('/')
+				if value.include?('tar')
+					next unless value[value.index('tar')..-1].in?(FILE_TYPE)
+				elsif value.include?('KEYS.bak')
+					true
+				else
+					next unless value.split('.').last.in?(FILE_TYPE)
+				end
+			end
+			results.push(url + value)
+			value = value.chop if value.last == '/'
+			files.push(parent + value)
+		end
+	end
+	handle_file(results, files, parent)
+end
+  
+def handle_file(results, files, parent)
+	local_files = Dir["#{parent}*"]
+	delete_files = local_files - files
+	if delete_files.present?
+		delete_files.each do |file|
+			delete_file(file)
+		end
+	end
+	results.each do |r|
+		name = r[37..-1]
+		path = @path + name
+		if r.end_with?('/')
+			Dir.mkdir(path) unless File.directory?(path)
+			search_link([r])
+		else
+			if File.exist?(path)
+				online_md5 = Digest::MD5.hexdigest(URI.parse(r).open.read)
+				local_md5 = Digest::MD5.hexdigest(File.open(path,"rb"){|fs| fs.read })
+				next if online_md5 == local_md5
+			end
+			File.open(path,'wb') do |file|
+				file << open(r).read
+			end
+		end
+	end
+end
+
+def delete_file(file)
+	if File.directory?(file)
+		Dir["#{file}/*"].each do |dir_file|
+			if File.directory?(dir_file)
+				delete_file(dir_file)
+			else
+				File.delete(dir_file)
+			end
+		end
+		Dir.delete(file)
+	else
+		File.delete(file)
+	end
+end
+
+
