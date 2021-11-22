@@ -1,3 +1,4 @@
+https://gitee.com/test-chian
 urls = ['https://archive.apache.org/dist/maven/']
 dir_name = urls[0].split('/').last
 user_dir = File.expand_path('~')
