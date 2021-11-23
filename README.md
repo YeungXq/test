@@ -1,5 +1,6 @@
 1# open
 https://gitee.com/test-chian
+![输入图片说明](test/testtzi/MAC%20MINI%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91-%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF.jpg)
 ![输入图片说明](test/testtzi/QQ%E6%88%AA%E5%9B%BE20211014201751.png)
 [输入链接说明](https://gitee.com/test-chian)
 ![输入图片说明](test/QQ%E6%88%AA%E5%9B%BE20211014184806.png)
