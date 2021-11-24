@@ -9,6 +9,7 @@ https://gitee.com/test-chian
 ![输入图片说明](test/2021-10-18%2017-55-19%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
 ![输入图片说明](%E9%80%89%E5%8C%BA_001.png)
 ![输入图片说明](test/testtzi/%E9%80%89%E5%8C%BA_001.png)
+![输入图片说明](test/testtzi/%E5%9B%BE1.jpg)
 #### 介绍
 {**以下是 Gitee 平台说明，您可以替换此简介**
 Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
