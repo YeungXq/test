@@ -1,3 +1,3 @@
-def test.rb
+def test
   return 'test'
 end
