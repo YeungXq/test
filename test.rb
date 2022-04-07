@@ -9,6 +9,3 @@ def test_test
 end
 
 
-def test
-    return 'test'
-end
