@@ -1,7 +1,7 @@
 public class FindService {
 
     @Override
-    public void destroy() {
+    public void test() {
 
     }
 }
